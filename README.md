@@ -8,4 +8,7 @@
 TBD 44,45  
 things to add:
 - hashtag symbol
-- dot symbol  
+- dot symbol
+- string literal
+- comments
+- chars
