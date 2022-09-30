@@ -964,6 +964,7 @@ public class Tokenizer {
     }
     private void header() {
         System.out.printf("%-35s%30s\n", "Lexemes","Tokens");
+        System.out.println("----------------------------------------------------------------------------------");
     }
 
     private void error() {
@@ -977,9 +978,9 @@ public class Tokenizer {
                 .reduce((acc, e) -> acc + e)
                 .get().trim();
         if (RESERVED_WORDS.contains(completeLexeme)) {
-            System.out.printf("%-35s%30s\n", completeLexeme, completeLexeme);
+            System.out.printf("%-35s%15s%30s\n", completeLexeme, "|", completeLexeme);
         } else if (state >= 0) {
-            System.out.printf("%-35s%30s\n", completeLexeme, TOKENS_NAMES.get(state));
+            System.out.printf("%-35s%15s%30s\n",completeLexeme, "|" , TOKENS_NAMES.get(state));
         }
         resetLexeme();
     }
