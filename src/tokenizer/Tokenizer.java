@@ -684,7 +684,7 @@ public class Tokenizer {
 
     private void case36() {
         if (lookahead.matches("\\|")) {
-            state = 38;
+            state = 37;
             storeCharIntoLexemeArray();
             getChar();
         } else if (lookahead.matches("=")) {
@@ -692,7 +692,7 @@ public class Tokenizer {
             storeCharIntoLexemeArray();
             getChar();
         } else {
-            state = 37;
+            state = 38;
         }
     }
 
@@ -706,12 +706,12 @@ public class Tokenizer {
     }
 
     private void case39() {
-        if (lookahead.matches("&")) {
+        if (lookahead.matches("\\&")) {
             state = 40;
             storeCharIntoLexemeArray();
             getChar();
         }
-        if (lookahead.matches("=")) {
+        else if (lookahead.matches("=")) {
             state = 56;
             storeCharIntoLexemeArray();
             getChar();
