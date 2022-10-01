@@ -710,8 +710,7 @@ public class Tokenizer {
             state = 40;
             storeCharIntoLexemeArray();
             getChar();
-        }
-        else if (lookahead.matches("=")) {
+        } else if (lookahead.matches("=")) {
             state = 56;
             storeCharIntoLexemeArray();
             getChar();
@@ -795,6 +794,7 @@ public class Tokenizer {
             getChar();
         }
     }
+
     private void case53() {
         if (lookahead.matches("=")) {
             state = 55;
@@ -940,7 +940,16 @@ public class Tokenizer {
     }
 
     private void case73() {
-        if (lookahead.matches("'")) {
+        //String backslashChar = 
+        if (lexeme.get(1) == '\\') {
+            if (lookahead.matches("[abfnrtv]")) {
+                state = 74;
+                storeCharIntoLexemeArray();
+                getChar();
+                storeCharIntoLexemeArray();
+                getChar();
+            }
+        } else if (lookahead.matches("'")) {
             state = 74;
             storeCharIntoLexemeArray();
             getChar();
@@ -962,8 +971,9 @@ public class Tokenizer {
         returnToken();
         lexeme = copy;
     }
+
     private void header() {
-        System.out.printf("%-35s%30s\n", "Lexemes","Tokens");
+        System.out.printf("%-35s%30s\n", "Lexemes", "Tokens");
         System.out.println("----------------------------------------------------------------------------------");
     }
 
@@ -980,7 +990,7 @@ public class Tokenizer {
         if (RESERVED_WORDS.contains(completeLexeme)) {
             System.out.printf("%-35s%15s%30s\n", completeLexeme, "|", completeLexeme);
         } else if (state >= 0) {
-            System.out.printf("%-35s%15s%30s\n",completeLexeme, "|" , TOKENS_NAMES.get(state));
+            System.out.printf("%-35s%15s%30s\n", completeLexeme, "|", TOKENS_NAMES.get(state));
         }
         resetLexeme();
     }
